@@ -8,15 +8,24 @@
         header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ed1c24; padding-bottom: 10px; }
         .container { display: flex; gap: 15px; height: 80vh; margin-top: 20px; }
         .column { flex: 1; background: #1e1e1e; border-radius: 10px; padding: 15px; overflow-y: auto; border: 1px solid #333; }
-        button { display: block; width: 100%; padding: 12px; margin-bottom: 8px; background: #2d2d2d; color: #fff; border: 1px solid #444; border-radius: 6px; cursor: pointer; text-align: left; }
-        button:hover { background: #444; }
-        button.active { background: #ed1c24; font-weight: bold; }
+        
+        .item-row { display: flex; align-items: center; gap: 5px; margin-bottom: 8px; }
+        .main-btn { flex: 1; padding: 12px; background: #2d2d2d; color: #fff; border: 1px solid #444; border-radius: 6px; cursor: pointer; text-align: left; }
+        .main-btn:hover { background: #444; }
+        .active { background: #ed1c24 !important; font-weight: bold; }
+        
+        .edit-tools { display: none; gap: 5px; } 
+        .tool-btn { background: #333; border: 1px solid #555; color: #aaa; padding: 8px; border-radius: 4px; cursor: pointer; font-size: 12px; }
+        .tool-btn:hover { color: #fff; background: #444; }
+        .del-btn:hover { color: #ff4d4d; border-color: #ff4d4d; }
+
         .trim-btn { background: #007bff; border-color: #0056b3; }
-        .add-btn { background: none; border: 1px dashed #666; color: #888; text-align: center; margin-top: 10px; display: none; }
+        .add-btn { background: none; border: 1px dashed #666; color: #888; text-align: center; margin-top: 10px; display: none; width: 100%; padding: 10px; cursor: pointer; border-radius: 6px; }
+        
+        .nav-right { display: flex; gap: 10px; align-items: center; }
         .mgmt-toggle, .sort-select { background: #444; color: white; padding: 5px 15px; border-radius: 20px; cursor: pointer; font-size: 12px; border: none; }
         .mgmt-active { background: #ed1c24; }
         #status { font-size: 12px; margin-left: 10px; color: #aaa; }
-        .nav-right { display: flex; gap: 10px; align-items: center; }
     </style>
 </head>
 <body>
@@ -32,38 +41,21 @@
                 <option value="sort=mileage&desc=0">KM: Low to High</option>
                 <option value="sort=mileage&desc=1">KM: High to Low</option>
             </select>
-
             <button class="mgmt-toggle" onclick="setupToken()">🔑 Set Token</button>
             <div id="mgmtToggle" class="mgmt-toggle" onclick="toggleMgmt()">Edit Mode: OFF</div>
         </div>
     </header>
 
     <div class="container">
-        <div class="column">
-            <h3>1. Make</h3>
-            <div id="makeList"></div>
-            <button class="add-btn" onclick="addMake()">+ Add Make</button>
-        </div>
-        <div class="column">
-            <h3>2. Model</h3>
-            <div id="modelList"></div>
-            <button class="add-btn" onclick="addModel()">+ Add Model</button>
-        </div>
-        <div class="column">
-            <h3>3. Year</h3>
-            <div id="yearList"></div>
-            <button class="add-btn" onclick="addYear()">+ Add Year</button>
-        </div>
-        <div class="column">
-            <h3>4. Trim (Go!)</h3>
-            <div id="trimList"></div>
-            <button class="add-btn" onclick="addTrim()">+ Add Trim</button>
-        </div>
+        <div class="column"><h3>1. Make</h3><div id="makeList"></div><button class="add-btn" onclick="addItem('make')">+ Add Make</button></div>
+        <div class="column"><h3>2. Model</h3><div id="modelList"></div><button class="add-btn" onclick="addItem('model')">+ Add Model</button></div>
+        <div class="column"><h3>3. Year</h3><div id="yearList"></div><button class="add-btn" onclick="addItem('year')">+ Add Year</button></div>
+        <div class="column"><h3>4. Trim (Go!)</h3><div id="trimList"></div><button class="add-btn" onclick="addItem('trim')">+ Add Trim</button></div>
     </div>
 
 <script>
     // --- CONFIGURATION ---
-    const GITHUB_USER = 'BidWatch'; // <--- ENSURE YOUR USERNAME IS HERE
+    const GITHUB_USER = 'BidWatch'; 
     const GITHUB_REPO = 'TraderSearch';
     const GITHUB_FILE = 'database.json';
 
@@ -110,92 +102,123 @@
         if (t) { localStorage.setItem('gh_token', t); location.reload(); }
     }
 
+    // --- UI BUILDER ---
+    function createRow(text, onSelect, onEdit, onDel, isActive = false, isTrim = false) {
+        const row = document.createElement('div');
+        row.className = 'item-row';
+        
+        const btn = document.createElement('button');
+        btn.className = 'main-btn' + (isActive ? ' active' : '') + (isTrim ? ' trim-btn' : '');
+        btn.innerText = text;
+        btn.onclick = onSelect;
+        
+        const tools = document.createElement('div');
+        tools.className = 'edit-tools';
+        tools.style.display = mgmtMode ? 'flex' : 'none';
+        
+        const editBtn = document.createElement('button');
+        editBtn.className = 'tool-btn';
+        editBtn.innerHTML = '🖉';
+        editBtn.onclick = (e) => { e.stopPropagation(); onEdit(); };
+        
+        const delBtn = document.createElement('button');
+        delBtn.className = 'tool-btn del-btn';
+        delBtn.innerHTML = '🗑';
+        delBtn.onclick = (e) => { e.stopPropagation(); onDel(); };
+        
+        tools.appendChild(editBtn);
+        tools.appendChild(delBtn);
+        row.appendChild(btn);
+        row.appendChild(tools);
+        return row;
+    }
+
     // --- RENDERERS ---
     function renderMakes() {
-        const list = document.getElementById('makeList');
-        list.innerHTML = '';
-        Object.keys(carData).sort().forEach(make => {
-            const btn = document.createElement('button');
-            btn.innerText = make;
-            btn.onclick = () => { selection.make = make; clearCols(1); highlight(list, btn); renderModels(); };
-            list.appendChild(btn);
+        const list = document.getElementById('makeList'); list.innerHTML = '';
+        Object.keys(carData).sort().forEach(m => {
+            list.appendChild(createRow(m, () => { selection.make = m; clearCols(1); renderMakes(); renderModels(); }, 
+            () => renameItem('make', m), () => deleteItem('make', m), selection.make === m));
         });
     }
 
     function renderModels() {
-        const list = document.getElementById('modelList');
-        list.innerHTML = '';
-        Object.keys(carData[selection.make] || {}).sort().forEach(model => {
-            const btn = document.createElement('button');
-            btn.innerText = model;
-            btn.onclick = () => { selection.model = model; clearCols(2); highlight(list, btn); renderYears(); };
-            list.appendChild(btn);
+        const list = document.getElementById('modelList'); list.innerHTML = '';
+        Object.keys(carData[selection.make] || {}).sort().forEach(m => {
+            list.appendChild(createRow(m, () => { selection.model = m; clearCols(2); renderModels(); renderYears(); }, 
+            () => renameItem('model', m), () => deleteItem('model', m), selection.model === m));
         });
     }
 
     function renderYears() {
-        const list = document.getElementById('yearList');
-        list.innerHTML = '';
-        const years = Object.keys(carData[selection.make][selection.model] || {}).sort((a,b) => b-a);
-        years.forEach(year => {
-            const btn = document.createElement('button');
-            btn.innerText = year;
-            btn.onclick = () => { selection.year = year; clearCols(3); highlight(list, btn); renderTrims(); };
-            list.appendChild(btn);
+        const list = document.getElementById('yearList'); list.innerHTML = '';
+        const years = Object.keys(carData[selection.make][selection.model] || {}).sort((a,b)=>b-a);
+        years.forEach(y => {
+            list.appendChild(createRow(y, () => { selection.year = y; clearCols(3); highlightRow(list, y); renderTrims(); }, 
+            () => renameItem('year', y), () => deleteItem('year', y), selection.year === y));
         });
     }
 
     function renderTrims() {
-        const list = document.getElementById('trimList');
-        list.innerHTML = '';
+        const list = document.getElementById('trimList'); list.innerHTML = '';
         const trims = carData[selection.make][selection.model][selection.year] || [];
-        trims.forEach(trim => {
-            const btn = document.createElement('button');
-            btn.className = 'trim-btn';
-            btn.innerText = trim;
-            btn.onclick = () => launchSearch(trim);
-            list.appendChild(btn);
+        trims.forEach((t, idx) => {
+            list.appendChild(createRow(t, () => launchSearch(t), () => renameItem('trim', idx), () => deleteItem('trim', idx), false, true));
         });
     }
 
-    // --- UPDATED SEARCH LOGIC ---
+    // --- SEARCH LOGIC ---
     function launchSearch(trim) {
         const make = selection.make.toLowerCase().replace(/\s+/g, '-');
         const model = selection.model.toLowerCase().replace(/\s+/g, '-');
         const trimPath = "tn_" + trim.toLowerCase().replace(/\s+/g, '-');
         const yearPath = "my_" + selection.year;
-        
-        // Get the value from our new dropdown
         const sortParams = document.getElementById('sortOrder').value;
-
-        // Construct the URL using your autohebdo/autotrader format
         const url = `https://www.autohebdo.net/autos/${make}/${model}/${trimPath}/${yearPath}/reg_qc/cit_laval?offer=N%2CU&cy=CA&damaged_listing=exclude&ustate=N%2CU&atype=C&${sortParams}`;
-        
         window.open(url, '_blank');
     }
 
-    // --- DATA ADDERS ---
-    function addMake() { const n = prompt("Make:"); if (n) { carData[n] = {}; renderMakes(); pushData(); } }
-    function addModel() { if (!selection.make) return; const n = prompt("Model:"); if (n) { carData[selection.make][n] = {}; renderModels(); pushData(); } }
-    function addYear() { if (!selection.model) return; const n = prompt("Year:"); if (n) { carData[selection.make][selection.model][n] = []; renderYears(); pushData(); } }
-    function addTrim() { if (!selection.year) return; const n = prompt("Trim:"); if (n) { carData[selection.make][selection.model][selection.year].push(n); renderTrims(); pushData(); } }
-
-    function clearCols(lvl) {
-        if (lvl <= 1) { document.getElementById('modelList').innerHTML = ''; selection.model = ''; }
-        if (lvl <= 2) { document.getElementById('yearList').innerHTML = ''; selection.year = ''; }
-        document.getElementById('trimList').innerHTML = '';
+    // --- EDIT/ADD LOGIC ---
+    function renameItem(type, oldVal) {
+        const displayVal = type === 'trim' ? carData[selection.make][selection.model][selection.year][oldVal] : oldVal;
+        const newVal = prompt(`Rename "${displayVal}" to:`);
+        if (!newVal) return;
+        if (type === 'make') { carData[newVal] = carData[oldVal]; delete carData[oldVal]; selection.make = newVal; }
+        if (type === 'model') { carData[selection.make][newVal] = carData[selection.make][oldVal]; delete carData[selection.make][oldVal]; selection.model = newVal; }
+        if (type === 'year') { carData[selection.make][selection.model][newVal] = carData[selection.make][selection.model][oldVal]; delete carData[selection.make][selection.model][oldVal]; selection.year = newVal; }
+        if (type === 'trim') { carData[selection.make][selection.model][selection.year][oldVal] = newVal; }
+        pushData(); refreshAll();
     }
 
-    function highlight(p, b) {
-        p.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
-        b.classList.add('active');
+    function deleteItem(type, val) {
+        if (!confirm(`Delete this ${type}?`)) return;
+        if (type === 'make') { delete carData[val]; selection.make = ''; }
+        if (type === 'model') { delete carData[selection.make][val]; selection.model = ''; }
+        if (type === 'year') { delete carData[selection.make][selection.model][val]; selection.year = ''; }
+        if (type === 'trim') { carData[selection.make][selection.model][selection.year].splice(val, 1); }
+        pushData(); refreshAll();
     }
 
-    function toggleMgmt() {
-        mgmtMode = !mgmtMode;
+    function addItem(type) {
+        const n = prompt(`Add new ${type}:`);
+        if (!n) return;
+        if (type === 'make') carData[n] = {};
+        if (type === 'model') carData[selection.make][n] = {};
+        if (type === 'year') carData[selection.make][selection.model][n] = [];
+        if (type === 'trim') carData[selection.make][selection.model][selection.year].push(n);
+        pushData(); refreshAll();
+    }
+
+    // --- HELPERS ---
+    function refreshAll() { renderMakes(); renderModels(); renderYears(); renderTrims(); }
+    function clearCols(lvl) { if(lvl<=1)selection.model=''; if(lvl<=2)selection.year=''; renderTrims(); }
+    function highlightRow(p, text) { p.querySelectorAll('.main-btn').forEach(b => b.innerText === text ? b.classList.add('active') : b.classList.remove('active')); }
+    function toggleMgmt() { 
+        mgmtMode = !mgmtMode; 
         document.getElementById('mgmtToggle').innerText = `Edit Mode: ${mgmtMode ? 'ON' : 'OFF'}`;
         document.getElementById('mgmtToggle').classList.toggle('mgmt-active');
         document.querySelectorAll('.add-btn').forEach(b => b.style.display = mgmtMode ? 'block' : 'none');
+        refreshAll();
     }
 
     loadData();
