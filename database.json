@@ -35,7 +35,71 @@
       "2022": ["LX", "EX", "EX+", "EX Premium", "GT-Line", "GT"],
       "2023": ["LX", "EX", "EX+", "EX Premium", "GT-Line", "GT"],
       "2024": ["LX", "EX", "EX+", "EX Premium", "GT-Line", "GT"]
+    },
+    "Carnival": {
+      "2022": ["LX", "LX+", "EX", "EX+", "SX"],
+      "2023": ["LX", "LX+", "EX", "EX+", "SX"],
+      "2024": ["LX", "LX+", "EX", "EX+", "SX"],
+      "2025": ["LX", "EX", "EX+", "SX", "SX+"],
+      "2026": ["LX", "LX+", "EX", "EX+", "SX", "SX+"]
+    },
+    "Niro": {
+      "2018": ["L", "EX", "EX Premium", "SX Touring"],
+      "2019": ["L", "EX", "EX Premium", "SX Touring"],
+      "2020": ["L", "EX", "EX Premium", "SX Touring"],
+      "2021": ["L", "EX", "EX Premium", "SX Touring"],
+      "2022": ["L", "EX", "EX Premium", "SX Touring"],
+      "2023": ["LX", "EX", "EX Premium", "SX"],
+      "2024": ["LX", "EX", "EX Premium", "SX"],
+      "2025": ["LX", "EX", "EX Premium", "SX"],
+      "2026": ["LX", "EX", "EX Premium", "SX"]
+    },
+    "Niro EV": {
+      "2019": ["EX", "EX Premium", "SX Touring"],
+      "2020": ["EX", "EX Premium", "SX Touring"],
+      "2021": ["EX", "EX Premium", "SX Touring"],
+      "2022": ["EX", "EX Premium", "SX Touring"],
+      "2023": ["Premium", "Premium+", "Limited"],
+      "2024": ["Wind", "Wind+", "Wave"],
+      "2025": ["Wind", "Wind+", "Wave"],
+      "2026": ["Wind", "Wind+", "Wave"]
+    },
+    "Niro Plug-In Hybrid": {
+      "2018": ["EX", "EX Premium", "SX Touring"],
+      "2019": ["EX", "EX Premium", "SX Touring"],
+      "2020": ["EX", "EX Premium", "SX Touring"],
+      "2021": ["EX", "EX Premium", "SX Touring"],
+      "2022": ["EX", "EX Premium", "SX Touring"],
+      "2023": ["EX"],
+      "2024": ["EX"],
+      "2025": ["EX"],
+      "2026": ["EX"]
+    },
+    "Rio 5-Door": {
+      "2018": ["LX", "LX+", "EX", "EX Sport", "EX Tech"],
+      "2019": ["LX", "LX+", "EX", "EX Sport", "EX Tech"],
+      "2020": ["LX", "LX+", "EX", "EX Premium", "EX Tech"],
+      "2021": ["LX+", "EX", "EX Premium"],
+      "2022": ["LX+", "EX", "EX Premium"]
+    },
+    "Soul": {
+      "2018": ["LX", "EX", "EX+", "EX Premium", "EX Tech", "SX Turbo"],
+      "2019": ["LX", "EX", "EX+", "EX Premium", "EX Tech", "SX Turbo"],
+      "2020": ["LX", "EX", "EX+", "EX Premium", "EX Limited", "GT-Line Limited"],
+      "2021": ["LX", "EX", "EX+", "EX Premium", "EX Limited", "GT-Line Limited"],
+      "2022": ["LX", "EX", "EX+", "EX Premium", "EX Limited", "GT-Line Limited"],
+      "2023": ["LX", "EX", "EX+", "EX Premium", "GT-Line"],
+      "2024": ["LX", "EX", "EX+", "EX Premium", "GT-Line"]
+    },
+    "EV6": {
+      "2022": ["Long Range RWD", "Long Range AWD", "GT-Line Pkg 1", "GT-Line Pkg 2"],
+      "2023": ["Long Range RWD", "Long Range AWD", "GT-Line Pkg 1", "GT-Line Pkg 2", "GT"],
+      "2024": ["Light", "Wind", "Land", "GT-Line Pkg 1", "GT-Line Pkg 2", "GT"],
+      "2025": ["Light", "Wind", "Land", "GT-Line", "GT"],
+      "2026": ["Light", "Wind", "Land", "GT-Line", "GT"]
     }
+  }
+    
   },
   "HONDA": {
     "Civic": {
