@@ -40,7 +40,7 @@
       "2022": ["LX", "LX+", "EX", "EX+", "SX"],
       "2023": ["LX", "LX+", "EX", "EX+", "SX"],
       "2024": ["LX", "LX+", "EX", "EX+", "SX"],
-      "2025": ["LX", "EX", "EX+", "SX", "SX+"],
+      "2025": ["LX", "LX+", "EX", "EX+", "SX", "SX+"],
       "2026": ["LX", "LX+", "EX", "EX+", "SX", "SX+"]
     },
     "Niro": {
@@ -92,11 +92,11 @@
       "2024": ["LX", "EX", "EX+", "EX Premium", "GT-Line"]
     },
     "EV6": {
-      "2022": ["Long Range RWD", "Long Range AWD", "GT-Line Pkg 1", "GT-Line Pkg 2"],
-      "2023": ["Long Range RWD", "Long Range AWD", "GT-Line Pkg 1", "GT-Line Pkg 2", "GT"],
-      "2024": ["Light", "Wind", "Land", "GT-Line Pkg 1", "GT-Line Pkg 2", "GT"],
-      "2025": ["Light", "Wind", "Land", "GT-Line", "GT"],
-      "2026": ["Light", "Wind", "Land", "GT-Line", "GT"]
+      "2022": ["Long Range w-GT-Line Pkg 1", "Long Range w-GT-Line Pkg 2"],
+      "2023": ["Long Range w-GT-Line Pkg 1", "Long Range w-GT-Line Pkg 2", "GT"],
+      "2024": ["Wind", "Land", "Land w-GT-Line Pkg 1", "Land w-GT-Line Pkg 2", "GT"],
+      "2025": ["Wind", "Land", "Land GT-Line Pkg 1", "Land GT-Line Pkg 2", "Land GT-Line Limited Pkg", "GT"],
+      "2026": ["Wind", "Land", "Land GT-Line Pkg 1", "Land GT-Line Pkg 2", "Land GT-Line Limited Pkg", "GT"]
     }
   },
   "HONDA": {
