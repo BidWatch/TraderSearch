@@ -61,6 +61,55 @@
         "X-LINE LIMITED"
       ]
     },
+    "Sorento": {
+  "2020": [
+    "LX", 
+    "LX+", 
+    "LX+ V6", 
+    "Black Line V6", 
+    "EX V6", 
+    "EX+ V6", 
+    "SX V6"
+  ],
+  "2021": [
+    "LX+", 
+    "LX Premium", 
+    "X-Line", 
+    "EX", 
+    "EX+", 
+    "SX"
+  ],
+  "2022": [
+    "LX+", 
+    "LX Premium", 
+    "X-Line", 
+    "EX", 
+    "EX+", 
+    "SX"
+  ],
+  "2023": [
+    "LX+", 
+    "LX Premium", 
+    "X-Line", 
+    "EX", 
+    "EX+", 
+    "SX"
+  ],
+  "2024": [
+    "LX", 
+    "X-Line", 
+    "EX", 
+    "X-Line Limited", 
+    "X-Pro"
+  ],
+  "2025": [
+    "LX", 
+    "EX", 
+    "X-Line", 
+    "X-Line Limited", 
+    "X-Pro"
+  ]
+},
     "Seltos": {
       "2021": [
         "LX",
