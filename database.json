@@ -149,46 +149,70 @@
       ]
     },
     "Forte": {
-      "2017": [
-        "LX",
-        "LX+",
-        "EX",
-        "EX+",
-        "SX"
-      ],
-      "2018": [
-        "LX",
-        "LX+",
-        "EX",
-        "EX+",
-        "SX"
-      ],
-      "2019": [
-        "LX",
-        "LX+",
-        "EX",
-        "EX PREMIUM",
-        "GT"
-      ],
-      "2020": [
-        "LX",
-        "LX+",
-        "EX",
-        "EX PREMIUM",
-        "GT"
-      ],
-      "2021": [],
-      "2022": [],
-      "2023": [],
-      "2024": [
-        "LX",
-        "EX",
-        "EX+",
-        "GT-LINE",
-        "GT LIMITED"
-      ]
-    }
-  },
+  "2017": [
+    "LX", 
+    "LX+", 
+    "EX", 
+    "EX Premium", 
+    "EX Limited", 
+    "SX"
+  ],
+  "2018": [
+    "LX", 
+    "LX+", 
+    "EX", 
+    "EX Premium", 
+    "EX Limited", 
+    "SX"
+  ],
+  "2019": [
+    "LX", 
+    "EX", 
+    "EX+", 
+    "EX Premium", 
+    "EX Limited"
+  ],
+  "2020": [
+    "LX", 
+    "EX", 
+    "EX+", 
+    "EX Premium", 
+    "EX Limited", 
+    "GT"
+  ],
+  "2021": [
+    "LX", 
+    "EX", 
+    "EX+", 
+    "EX Premium", 
+    "EX Limited", 
+    "GT"
+  ],
+  "2022": [
+    "LX", 
+    "EX", 
+    "EX+", 
+    "EX Premium", 
+    "GT-Line", 
+    "GT"
+  ],
+  "2023": [
+    "LX", 
+    "EX", 
+    "EX+", 
+    "EX Premium", 
+    "GT-Line", 
+    "GT"
+  ],
+  "2024": [
+    "LX", 
+    "EX", 
+    "EX+", 
+    "EX Premium", 
+    "GT-Line", 
+    "GT"
+  ]
+},
   "HONDA": {
     "Civic": {
       "2017": [
