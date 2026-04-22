@@ -515,56 +515,69 @@
   },
   "HONDA": {
     "Civic": {
-      "2017": [
-        "lx",
-        "Ex",
-        "Sport",
-        "Touring"
-      ],
-      "2018": [
-        "lx",
-        "Ex",
-        "Sport",
-        "Touring"
-      ],
-      "2019": [
-        "lx",
-        "Ex",
-        "Sport",
-        "Touring"
-      ],
-      "2020": [
-        "lx",
-        "Ex",
-        "Sport",
-        "Touring"
-      ],
-      "2021": [
-        "lx",
-        "Ex",
-        "Sport",
-        "Touring"
-      ],
-      "2022": [
-        "lx",
-        "Ex",
-        "Sport",
-        "Touring"
-      ],
-      "2023": [
-        "lx",
-        "Ex",
-        "Sport",
-        "Touring"
-      ],
-      "2024": [
-        "lx",
-        "Ex",
-        "Sport",
-        "Touring"
-      ],
-      "2025": [],
-      "2026": []
+      "2017": ["LX", "EX", "EX-T", "Sport", "Touring", "Si"],
+      "2018": ["LX", "EX", "EX-T", "Sport", "Touring", "Si"],
+      "2019": ["LX", "EX", "Sport", "Touring", "Si"],
+      "2020": ["LX", "EX", "Sport", "Touring", "Si"],
+      "2021": ["LX", "EX", "Sport", "Touring", "Si"],
+      "2022": ["LX", "EX", "Sport", "Touring", "Si"],
+      "2023": ["LX", "EX", "Sport", "Touring", "Si"],
+      "2024": ["LX", "EX", "Sport", "Touring", "Si"],
+      "2025": ["LX", "Sport", "Sport Hybrid", "Sport Touring Hybrid", "Si"]
+    },
+    "CR-V": {
+      "2017": ["LX", "EX", "EX-L", "Touring"],
+      "2018": ["LX", "EX", "EX-L", "Touring"],
+      "2019": ["LX", "EX", "EX-L", "Touring"],
+      "2020": ["LX", "Sport", "EX-L", "Black Edition", "Touring"],
+      "2021": ["LX", "Sport", "EX-L", "Black Edition", "Touring"],
+      "2022": ["LX", "Sport", "EX-L", "Black Edition", "Touring"],
+      "2023": ["LX", "Sport", "EX-L", "Touring Hybrid"],
+      "2024": ["LX", "Sport", "EX-L", "EX-L Hybrid", "Touring Hybrid"],
+      "2025": ["LX", "EX", "Sport Hybrid", "EX-L", "Sport-L Hybrid", "Sport Touring Hybrid"]
+    },
+    "HR-V": {
+      "2017": ["LX", "EX", "EX-L Navi"],
+      "2018": ["LX", "EX", "EX-L Navi"],
+      "2019": ["LX", "Sport", "Touring"],
+      "2020": ["LX", "Sport", "Touring"],
+      "2021": ["LX", "Sport", "Touring"],
+      "2022": ["LX", "Sport", "Touring"],
+      "2023": ["LX", "Sport", "EX-L Navi"],
+      "2024": ["LX", "Sport", "EX-L Navi"],
+      "2025": ["LX", "Sport", "EX-L"]
+    },
+    "Accord": {
+      "2017": ["LX", "SE", "Sport", "EX-L", "Touring"],
+      "2018": ["LX", "Sport", "EX-L", "Touring"],
+      "2019": ["LX", "Sport", "EX-L", "Touring"],
+      "2020": ["LX", "Sport", "EX-L", "Touring"],
+      "2021": ["SE", "Sport", "EX-L", "Touring"],
+      "2022": ["SE", "Sport", "EX-L", "Touring"],
+      "2023": ["EX", "Sport Hybrid", "Touring Hybrid"],
+      "2024": ["EX", "Sport Hybrid", "Touring Hybrid"],
+      "2025": ["SE", "Sport-L Hybrid", "Touring Hybrid"]
+    },
+    "Pilot": {
+      "2017": ["LX", "EX", "EX-L Res", "EX-L Navi", "Touring"],
+      "2018": ["LX", "EX", "EX-L Res", "EX-L Navi", "Touring"],
+      "2019": ["LX", "EX", "EX-L", "Touring", "Black Edition"],
+      "2020": ["LX", "EX", "EX-L", "Touring", "Black Edition"],
+      "2021": ["LX", "EX", "EX-L", "Touring", "Black Edition"],
+      "2022": ["Sport", "EX-L", "Touring", "Black Edition", "TrailSport"],
+      "2023": ["Sport", "EX-L", "Touring", "Black Edition", "TrailSport"],
+      "2024": ["Sport", "EX-L", "Touring", "Black Edition", "TrailSport"],
+      "2025": ["Sport", "EX-L", "TrailSport", "Touring", "Black Edition"]
+    },
+    "Odyssey": {
+      "2018": ["LX", "EX", "EX-L", "Touring"],
+      "2019": ["LX", "EX", "EX-L", "Touring"],
+      "2020": ["LX", "EX", "EX-L", "Touring"],
+      "2021": ["EX", "EX-L", "Touring"],
+      "2022": ["EX", "EX-L", "Touring"],
+      "2023": ["EX", "EX-L", "Touring", "Black Edition"],
+      "2024": ["EX-L", "Touring", "Black Edition"],
+      "2025": ["EX-L", "Sport-L", "Touring", "Black Edition"]
     }
   },
   "HYUNDAI": {
