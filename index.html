@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AutoAppraiser Pro | Team Cloud</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #121212; color: #e0e0e0; margin: 0; padding: 20px; }
+        header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ed1c24; padding-bottom: 10px; }
+        .container { display: flex; gap: 15px; height: 80vh; margin-top: 20px; }
+        .column { flex: 1; background: #1e1e1e; border-radius: 10px; padding: 15px; overflow-y: auto; border: 1px solid #333; }
+        button { display: block; width: 100%; padding: 12px; margin-bottom: 8px; background: #2d2d2d; color: #fff; border: 1px solid #444; border-radius: 6px; cursor: pointer; text-align: left; }
+        button:hover { background: #444; }
+        button.active { background: #ed1c24; font-weight: bold; }
+        .trim-btn { background: #007bff; border-color: #0056b3; }
+        .add-btn { background: none; border: 1px dashed #666; color: #888; text-align: center; margin-top: 10px; display: none; }
+        .mgmt-toggle { background: #444; padding: 5px 15px; border-radius: 20px; cursor: pointer; font-size: 12px; }
+        .mgmt-active { background: #ed1c24; }
+        #status { font-size: 12px; margin-left: 10px; color: #aaa; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div>
+            <h2 style="margin:0">AutoAppraiser Pro <span id="status">Syncing...</span></h2>
+        </div>
+        <div style="display:flex; gap:10px;">
+            <button class="mgmt-toggle" onclick="setupToken()">🔑 Set Token</button>
+            <div id="mgmtToggle" class="mgmt-toggle" onclick="toggleMgmt()">Edit Mode: OFF</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="column">
+            <h3>1. Make</h3>
+            <div id="makeList"></div>
+            <button class="add-btn" onclick="addMake()">+ Add Make</button>
+        </div>
+        <div class="column">
+            <h3>2. Model</h3>
+            <div id="modelList"></div>
+            <button class="add-btn" onclick="addModel()">+ Add Model</button>
+        </div>
+        <div class="column">
+            <h3>3. Year</h3>
+            <div id="yearList"></div>
+            <button class="add-btn" onclick="addYear()">+ Add Year</button>
+        </div>
+        <div class="column">
+            <h3>4. Trim (Go!)</h3>
+            <div id="trimList"></div>
+            <button class="add-btn" onclick="addTrim()">+ Add Trim</button>
+        </div>
+    </div>
+
+<script>
+    // --- 1. CONFIGURATION (CHANGE THIS) ---
+    const GITHUB_USER = 'YOUR_GITHUB_USERNAME'; // <--- CHANGE THIS TO YOUR USERNAME
+    const GITHUB_REPO = 'appraiser';
+    const GITHUB_FILE = 'database.json';
+
+    let carData = {};
+    let currentSha = '';
+    let selection = { make: '', model: '', year: '' };
+    let mgmtMode = false;
+
+    // --- 2. CLOUD SYNC CORE ---
+    async function loadData() {
+        const status = document.getElementById('status');
+        try {
+            const resp = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}?t=${Date.now()}`);
+            const data = await resp.json();
+            currentSha = data.sha;
+            carData = JSON.parse(atob(data.content));
+            status.innerText = "✅ Cloud Synced";
+            status.style.color = "#28a745";
+            renderMakes();
+        } catch (e) {
+            status.innerText = "❌ Sync Error (Check Config)";
+            status.style.color = "#ed1c24";
+        }
+    }
+
+    async function pushData() {
+        const token = localStorage.getItem('gh_token');
+        if (!token) return alert("Please click the 🔑 button and paste your GitHub Token first.");
+        
+        document.getElementById('status').innerText = "💾 Saving to Cloud...";
+        
+        const content = btoa(unescape(encodeURIComponent(JSON.stringify(carData, null, 2))));
+        
+        const resp = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`, {
+            method: 'PUT',
+            headers: { 'Authorization': `token ${token}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                message: "Update inventory",
+                content: content,
+                sha: currentSha
+            })
+        });
+
+        if (resp.ok) {
+            const result = await resp.json();
+            currentSha = result.content.sha;
+            document.getElementById('status').innerText = "✅ Saved!";
+        } else {
+            alert("Error saving. Your token might be expired or incorrect.");
+        }
+    }
+
+    function setupToken() {
+        const t = prompt("Paste your GitHub Token here (it will be saved in this browser):");
+        if (t) { localStorage.setItem('gh_token', t); location.reload(); }
+    }
+
+    // --- 3. UI RENDERERS ---
+    function renderMakes() {
+        const list = document.getElementById('makeList');
+        list.innerHTML = '';
+        Object.keys(carData).sort().forEach(make => {
+            const btn = document.createElement('button');
+            btn.innerText = make;
+            btn.onclick = () => { selection.make = make; clearCols(1); highlight(list, btn); renderModels(); };
+            list.appendChild(btn);
+        });
+    }
+
+    function renderModels() {
+        const list = document.getElementById('modelList');
+        list.innerHTML = '';
+        Object.keys(carData[selection.make] || {}).sort().forEach(model => {
+            const btn = document.createElement('button');
+            btn.innerText = model;
+            btn.onclick = () => { selection.model = model; clearCols(2); highlight(list, btn); renderYears(); };
+            list.appendChild(btn);
+        });
+    }
+
+    function renderYears() {
+        const list = document.getElementById('yearList');
+        list.innerHTML = '';
+        const years = Object.keys(carData[selection.make][selection.model] || {}).sort((a,b) => b-a);
+        years.forEach(year => {
+            const btn = document.createElement('button');
+            btn.innerText = year;
+            btn.onclick = () => { selection.year = year; clearCols(3); highlight(list, btn); renderTrims(); };
+            list.appendChild(btn);
+        });
+    }
+
+    function renderTrims() {
+        const list = document.getElementById('trimList');
+        list.innerHTML = '';
+        const trims = carData[selection.make][selection.model][selection.year] || [];
+        trims.forEach(trim => {
+            const btn = document.createElement('button');
+            btn.className = 'trim-btn';
+            btn.innerText = trim;
+            btn.onclick = () => launchSearch(trim);
+            list.appendChild(btn);
+        });
+    }
+
+    // --- 4. DATA ADDERS ---
+    function addMake() {
+        const n = prompt("Enter Make:");
+        if (n) { carData[n] = {}; renderMakes(); pushData(); }
+    }
+    function addModel() {
+        if (!selection.make) return;
+        const n = prompt("Enter Model:");
+        if (n) { carData[selection.make][n] = {}; renderModels(); pushData(); }
+    }
+    function addYear() {
+        if (!selection.model) return;
+        const n = prompt("Enter Year:");
+        if (n) { carData[selection.make][selection.model][n] = []; renderYears(); pushData(); }
+    }
+    function addTrim() {
+        if (!selection.year) return;
+        const n = prompt("Enter Trim Name:");
+        if (n) { carData[selection.make][selection.model][selection.year].push(n); renderTrims(); pushData(); }
+    }
+
+    function launchSearch(trim) {
+        const make = selection.make.toLowerCase().replace(/\s+/g, '-');
+        const model = selection.model.toLowerCase().replace(/\s+/g, '-');
+        const trimPath = "tn_" + trim.toLowerCase().replace(/\s+/g, '-');
+        const yearPath = "my_" + selection.year;
+        const url = `https://www.autotrader.ca/cars/${make}/${model}/${trimPath}/${yearPath}/reg_qc/cit_laval?offer=N%2CU&cy=CA&damaged_listing=exclude&desc=0&sort=price&ustate=N%2CU&atype=C`;
+        window.open(url, '_blank');
+    }
+
+    function clearCols(lvl) {
+        if (lvl <= 1) { document.getElementById('modelList').innerHTML = ''; selection.model = ''; }
+        if (lvl <= 2) { document.getElementById('yearList').innerHTML = ''; selection.year = ''; }
+        document.getElementById('trimList').innerHTML = '';
+    }
+
+    function highlight(p, b) {
+        p.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+        b.classList.add('active');
+    }
+
+    function toggleMgmt() {
+        mgmtMode = !mgmtMode;
+        document.getElementById('mgmtToggle').innerText = `Edit Mode: ${mgmtMode ? 'ON' : 'OFF'}`;
+        document.getElementById('mgmtToggle').classList.toggle('mgmt-active');
+        document.querySelectorAll('.add-btn').forEach(b => b.style.display = mgmtMode ? 'block' : 'none');
+    }
+
+    loadData();
+</script>
+</body>
+</html>
