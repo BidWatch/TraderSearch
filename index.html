@@ -12,15 +12,15 @@
         .item-row { display: flex; align-items: center; gap: 5px; margin-bottom: 8px; }
         .main-btn { flex: 1; padding: 12px; background: #2d2d2d; color: #fff; border: 1px solid #444; border-radius: 6px; cursor: pointer; text-align: left; }
         .main-btn:hover { background: #444; }
-        .active { background: #ed1c24 !important; font-weight: bold; }
+        .active { background: #ed1c24 !important; font-weight: bold; border-color: #ff4d4d !important; }
         
-        .edit-tools { display: none; gap: 5px; } 
+        .edit-tools { display: flex; gap: 5px; } 
         .tool-btn { background: #333; border: 1px solid #555; color: #aaa; padding: 8px; border-radius: 4px; cursor: pointer; font-size: 12px; }
         .tool-btn:hover { color: #fff; background: #444; }
         .del-btn:hover { color: #ff4d4d; border-color: #ff4d4d; }
 
         .trim-btn { background: #007bff; border-color: #0056b3; }
-        .add-btn { background: none; border: 1px dashed #666; color: #888; text-align: center; margin-top: 10px; display: none; width: 100%; padding: 10px; cursor: pointer; border-radius: 6px; }
+        .add-btn { background: none; border: 1px dashed #666; color: #888; text-align: center; margin-top: 10px; width: 100%; padding: 10px; cursor: pointer; border-radius: 6px; }
         
         .nav-right { display: flex; gap: 10px; align-items: center; }
         .mgmt-toggle, .sort-select { background: #444; color: white; padding: 5px 15px; border-radius: 20px; cursor: pointer; font-size: 12px; border: none; }
@@ -31,9 +31,7 @@
 <body>
 
     <header>
-        <div>
-            <h2 style="margin:0">TraderSearch Lallier <span id="status">Syncing...</span></h2>
-        </div>
+        <div><h2 style="margin:0">TraderSearch Lallier <span id="status">Syncing...</span></h2></div>
         <div class="nav-right">
             <select id="sortOrder" class="sort-select">
                 <option value="sort=price&desc=0">Price: Low to High</option>
@@ -47,14 +45,13 @@
     </header>
 
     <div class="container">
-        <div class="column"><h3>1. Make</h3><div id="makeList"></div><button class="add-btn" onclick="addItem('make')">+ Add Make</button></div>
-        <div class="column"><h3>2. Model</h3><div id="modelList"></div><button class="add-btn" onclick="addItem('model')">+ Add Model</button></div>
-        <div class="column"><h3>3. Year</h3><div id="yearList"></div><button class="add-btn" onclick="addItem('year')">+ Add Year</button></div>
-        <div class="column"><h3>4. Trim (Go!)</h3><div id="trimList"></div><button class="add-btn" onclick="addItem('trim')">+ Add Trim</button></div>
+        <div class="column"><h3>1. Make</h3><div id="makeList"></div><button id="addMakeBtn" class="add-btn" style="display:none" onclick="addItem('make')">+ Add Make</button></div>
+        <div class="column"><h3>2. Model</h3><div id="modelList"></div><button id="addModelBtn" class="add-btn" style="display:none" onclick="addItem('model')">+ Add Model</button></div>
+        <div class="column"><h3>3. Year</h3><div id="yearList"></div><button id="addYearBtn" class="add-btn" style="display:none" onclick="addItem('year')">+ Add Year</button></div>
+        <div class="column"><h3>4. Trim (Go!)</h3><div id="trimList"></div><button id="addTrimBtn" class="add-btn" style="display:none" onclick="addItem('trim')">+ Add Trim</button></div>
     </div>
 
 <script>
-    // --- CONFIGURATION ---
     const GITHUB_USER = 'BidWatch'; 
     const GITHUB_REPO = 'TraderSearch';
     const GITHUB_FILE = 'database.json';
@@ -64,7 +61,6 @@
     let selection = { make: '', model: '', year: '' };
     let mgmtMode = false;
 
-    // --- CLOUD SYNC CORE ---
     async function loadData() {
         const status = document.getElementById('status');
         try {
@@ -75,10 +71,7 @@
             status.innerText = "✅ Cloud Synced";
             status.style.color = "#28a745";
             renderMakes();
-        } catch (e) {
-            status.innerText = "❌ Sync Error";
-            status.style.color = "#ed1c24";
-        }
+        } catch (e) { status.innerText = "❌ Sync Error"; }
     }
 
     async function pushData() {
@@ -90,20 +83,14 @@
             headers: { 'Authorization': `token ${token}`, 'Content-Type': 'application/json' },
             body: JSON.stringify({ message: "Update inventory", content: content, sha: currentSha })
         });
-        if (resp.ok) {
-            const result = await resp.json();
-            currentSha = result.content.sha;
-            document.getElementById('status').innerText = "✅ Saved!";
+        if (resp.ok) { 
+            const result = await resp.json(); 
+            currentSha = result.content.sha; 
+            document.getElementById('status').innerText = "✅ Saved!"; 
         }
     }
 
-    function setupToken() {
-        const t = prompt("Paste GitHub Token:");
-        if (t) { localStorage.setItem('gh_token', t); location.reload(); }
-    }
-
-    // --- UI BUILDER ---
-    function createRow(text, onSelect, onEdit, onDel, isActive = false, isTrim = false) {
+    function createRow(text, onSelect, onEdit, onDel, isActive, isTrim) {
         const row = document.createElement('div');
         row.className = 'item-row';
         
@@ -112,73 +99,64 @@
         btn.innerText = text;
         btn.onclick = onSelect;
         
-        const tools = document.createElement('div');
-        tools.className = 'edit-tools';
-        tools.style.display = mgmtMode ? 'flex' : 'none';
-        
-        const editBtn = document.createElement('button');
-        editBtn.className = 'tool-btn';
-        editBtn.innerHTML = '🖉';
-        editBtn.onclick = (e) => { e.stopPropagation(); onEdit(); };
-        
-        const delBtn = document.createElement('button');
-        delBtn.className = 'tool-btn del-btn';
-        delBtn.innerHTML = '🗑';
-        delBtn.onclick = (e) => { e.stopPropagation(); onDel(); };
-        
-        tools.appendChild(editBtn);
-        tools.appendChild(delBtn);
         row.appendChild(btn);
-        row.appendChild(tools);
+
+        if (mgmtMode) {
+            const tools = document.createElement('div');
+            tools.className = 'edit-tools';
+            
+            const editBtn = document.createElement('button');
+            editBtn.className = 'tool-btn';
+            editBtn.innerHTML = '🖉';
+            editBtn.onclick = (e) => { e.stopPropagation(); onEdit(); };
+            
+            const delBtn = document.createElement('button');
+            delBtn.className = 'tool-btn del-btn';
+            delBtn.innerHTML = '🗑';
+            delBtn.onclick = (e) => { e.stopPropagation(); onDel(); };
+            
+            tools.appendChild(editBtn);
+            tools.appendChild(delBtn);
+            row.appendChild(tools);
+        }
         return row;
     }
 
-    // --- RENDERERS ---
     function renderMakes() {
         const list = document.getElementById('makeList'); list.innerHTML = '';
         Object.keys(carData).sort().forEach(m => {
             list.appendChild(createRow(m, () => { selection.make = m; clearCols(1); renderMakes(); renderModels(); }, 
-            () => renameItem('make', m), () => deleteItem('make', m), selection.make === m));
+            () => renameItem('make', m), () => deleteItem('make', m), selection.make === m, false));
         });
     }
 
     function renderModels() {
         const list = document.getElementById('modelList'); list.innerHTML = '';
+        if (!selection.make) return;
         Object.keys(carData[selection.make] || {}).sort().forEach(m => {
             list.appendChild(createRow(m, () => { selection.model = m; clearCols(2); renderModels(); renderYears(); }, 
-            () => renameItem('model', m), () => deleteItem('model', m), selection.model === m));
+            () => renameItem('model', m), () => deleteItem('model', m), selection.model === m, false));
         });
     }
 
     function renderYears() {
         const list = document.getElementById('yearList'); list.innerHTML = '';
-        const years = Object.keys(carData[selection.make][selection.model] || {}).sort((a,b)=>b-a);
-        years.forEach(y => {
-            list.appendChild(createRow(y, () => { selection.year = y; clearCols(3); highlightRow(list, y); renderTrims(); }, 
-            () => renameItem('year', y), () => deleteItem('year', y), selection.year === y));
+        if (!selection.model) return;
+        Object.keys(carData[selection.make][selection.model] || {}).sort((a,b)=>b-a).forEach(y => {
+            list.appendChild(createRow(y, () => { selection.year = y; clearCols(3); renderYears(); renderTrims(); }, 
+            () => renameItem('year', y), () => deleteItem('year', y), selection.year === y, false));
         });
     }
 
     function renderTrims() {
         const list = document.getElementById('trimList'); list.innerHTML = '';
+        if (!selection.year) return;
         const trims = carData[selection.make][selection.model][selection.year] || [];
         trims.forEach((t, idx) => {
             list.appendChild(createRow(t, () => launchSearch(t), () => renameItem('trim', idx), () => deleteItem('trim', idx), false, true));
         });
     }
 
-    // --- SEARCH LOGIC ---
-    function launchSearch(trim) {
-        const make = selection.make.toLowerCase().replace(/\s+/g, '-');
-        const model = selection.model.toLowerCase().replace(/\s+/g, '-');
-        const trimPath = "tn_" + trim.toLowerCase().replace(/\s+/g, '-');
-        const yearPath = "my_" + selection.year;
-        const sortParams = document.getElementById('sortOrder').value;
-        const url = `https://www.autohebdo.net/autos/${make}/${model}/${trimPath}/${yearPath}/reg_qc/cit_laval?offer=N%2CU&cy=CA&damaged_listing=exclude&ustate=N%2CU&atype=C&${sortParams}`;
-        window.open(url, '_blank');
-    }
-
-    // --- EDIT/ADD LOGIC ---
     function renameItem(type, oldVal) {
         const displayVal = type === 'trim' ? carData[selection.make][selection.model][selection.year][oldVal] : oldVal;
         const newVal = prompt(`Rename "${displayVal}" to:`);
@@ -209,15 +187,28 @@
         pushData(); refreshAll();
     }
 
-    // --- HELPERS ---
+    function launchSearch(trim) {
+        const make = selection.make.toLowerCase().replace(/\s+/g, '-');
+        const model = selection.model.toLowerCase().replace(/\s+/g, '-');
+        const trimPath = "tn_" + trim.toLowerCase().replace(/\s+/g, '-');
+        const yearPath = "my_" + selection.year;
+        const sortParams = document.getElementById('sortOrder').value;
+        const url = `https://www.autohebdo.net/autos/${make}/${model}/${trimPath}/${yearPath}/reg_qc/cit_laval?offer=N%2CU&cy=CA&damaged_listing=exclude&ustate=N%2CU&atype=C&${sortParams}`;
+        window.open(url, '_blank');
+    }
+
     function refreshAll() { renderMakes(); renderModels(); renderYears(); renderTrims(); }
     function clearCols(lvl) { if(lvl<=1)selection.model=''; if(lvl<=2)selection.year=''; renderTrims(); }
-    function highlightRow(p, text) { p.querySelectorAll('.main-btn').forEach(b => b.innerText === text ? b.classList.add('active') : b.classList.remove('active')); }
+    function setupToken() { const t = prompt("Paste Token:"); if(t){localStorage.setItem('gh_token', t); location.reload();} }
     function toggleMgmt() { 
         mgmtMode = !mgmtMode; 
         document.getElementById('mgmtToggle').innerText = `Edit Mode: ${mgmtMode ? 'ON' : 'OFF'}`;
         document.getElementById('mgmtToggle').classList.toggle('mgmt-active');
-        document.querySelectorAll('.add-btn').forEach(b => b.style.display = mgmtMode ? 'block' : 'none');
+        const display = mgmtMode ? 'block' : 'none';
+        document.getElementById('addMakeBtn').style.display = display;
+        document.getElementById('addModelBtn').style.display = display;
+        document.getElementById('addYearBtn').style.display = display;
+        document.getElementById('addTrimBtn').style.display = display;
         refreshAll();
     }
 
