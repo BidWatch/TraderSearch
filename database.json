@@ -1,279 +1,59 @@
 {
   "KIA": {
     "Sportage": {
-      "2019": [
-        "LX",
-        "LX S",
-        "LX Nightsky Edition",
-        "EX S",
-        "EX PREMIUM S",
-        "SX"
-      ],
-      "2020": [
-        "LX",
-        "LX S",
-        "LX Nightsky Edition",
-        "EX S",
-        "EX PREMIUM S",
-        "SX"
-      ],
-      "2021": [
-        "LX",
-        "LX S",
-        "LX Nightsky Edition",
-        "EX S",
-        "EX PREMIUM S",
-        "SX"
-      ],
-      "2022": [
-        "LX",
-        "LX Nightsky Edition",
-        "EX S",
-        "EX PREMIUM S",
-        "SX"
-      ],
-      "2023": [
-        "LX",
-        "X-LINE",
-        "EX",
-        "EX PREMIUM",
-        "X-LINE LIMITED"
-      ],
-      "2024": [
-        "LX",
-        "X-LINE",
-        "EX",
-        "EX PREMIUM",
-        "X-LINE LIMITED"
-      ],
-      "2025": [
-        "LX",
-        "X-LINE",
-        "EX",
-        "EX PREMIUM",
-        "X-LINE LIMITED"
-      ],
-      "2026": [
-        "LX",
-        "X-LINE",
-        "EX",
-        "EX PREMIUM",
-        "X-LINE LIMITED"
-      ]
+      "2019": ["LX", "LX S", "LX Nightsky Edition", "EX S", "EX PREMIUM S", "SX"],
+      "2020": ["LX", "LX S", "LX Nightsky Edition", "EX S", "EX PREMIUM S", "SX"],
+      "2021": ["LX", "LX S", "LX Nightsky Edition", "EX S", "EX PREMIUM S", "SX"],
+      "2022": ["LX", "LX Nightsky Edition", "EX S", "EX PREMIUM S", "SX"],
+      "2023": ["LX", "X-LINE", "EX", "EX PREMIUM", "X-LINE LIMITED"],
+      "2024": ["LX", "X-LINE", "EX", "EX PREMIUM", "X-LINE LIMITED"],
+      "2025": ["LX", "X-LINE", "EX", "EX PREMIUM", "X-LINE LIMITED"],
+      "2026": ["LX", "X-LINE", "EX", "EX PREMIUM", "X-LINE LIMITED"]
     },
     "Sorento": {
-  "2020": [
-    "LX", 
-    "LX+", 
-    "LX+ V6", 
-    "Black Line V6", 
-    "EX V6", 
-    "EX+ V6", 
-    "SX V6"
-  ],
-  "2021": [
-    "LX+", 
-    "LX Premium", 
-    "X-Line", 
-    "EX", 
-    "EX+", 
-    "SX"
-  ],
-  "2022": [
-    "LX+", 
-    "LX Premium", 
-    "X-Line", 
-    "EX", 
-    "EX+", 
-    "SX"
-  ],
-  "2023": [
-    "LX+", 
-    "LX Premium", 
-    "X-Line", 
-    "EX", 
-    "EX+", 
-    "SX"
-  ],
-  "2024": [
-    "LX", 
-    "X-Line", 
-    "EX", 
-    "X-Line Limited", 
-    "X-Pro"
-  ],
-  "2025": [
-    "LX", 
-    "EX", 
-    "X-Line", 
-    "X-Line Limited", 
-    "X-Pro"
-  ]
-},
+      "2020": ["LX", "LX+", "LX+ V6", "Black Line V6", "EX V6", "EX+ V6", "SX V6"],
+      "2021": ["LX+", "LX Premium", "X-Line", "EX", "EX+", "SX"],
+      "2022": ["LX+", "LX Premium", "X-Line", "EX", "EX+", "SX"],
+      "2023": ["LX+", "LX Premium", "X-Line", "EX", "EX+", "SX"],
+      "2024": ["LX", "X-Line", "EX", "X-Line Limited", "X-Pro"],
+      "2025": ["LX", "EX", "X-Line", "X-Line Limited", "X-Pro"]
+    },
     "Seltos": {
-      "2021": [
-        "LX",
-        "EX",
-        "EX PREMIUM",
-        "SX"
-      ],
-      "2022": [
-        "LX",
-        "EX",
-        "EX PREMIUM",
-        "SX"
-      ],
-      "2023": [
-        "LX",
-        "EX",
-        "EX PREMIUM",
-        "SX"
-      ],
-      "2024": [
-        "LX",
-        "EX",
-        "EX PREMIUM",
-        "SX"
-      ],
-      "2025": [
-        "LX",
-        "EX",
-        "EX PREMIUM",
-        "SX"
-      ],
-      "2026": [
-        "LX",
-        "EX",
-        "EX PREMIUM",
-        "SX"
-      ]
+      "2021": ["LX", "EX", "EX PREMIUM", "SX"],
+      "2022": ["LX", "EX", "EX PREMIUM", "SX"],
+      "2023": ["LX", "EX", "EX PREMIUM", "SX"],
+      "2024": ["LX", "EX", "EX PREMIUM", "SX"],
+      "2025": ["LX", "EX", "EX PREMIUM", "SX"],
+      "2026": ["LX", "EX", "EX PREMIUM", "SX"]
     },
     "Forte": {
-  "2017": [
-    "LX", 
-    "LX+", 
-    "EX", 
-    "EX Premium", 
-    "EX Limited", 
-    "SX"
-  ],
-  "2018": [
-    "LX", 
-    "LX+", 
-    "EX", 
-    "EX Premium", 
-    "EX Limited", 
-    "SX"
-  ],
-  "2019": [
-    "LX", 
-    "EX", 
-    "EX+", 
-    "EX Premium", 
-    "EX Limited"
-  ],
-  "2020": [
-    "LX", 
-    "EX", 
-    "EX+", 
-    "EX Premium", 
-    "EX Limited", 
-    "GT"
-  ],
-  "2021": [
-    "LX", 
-    "EX", 
-    "EX+", 
-    "EX Premium", 
-    "EX Limited", 
-    "GT"
-  ],
-  "2022": [
-    "LX", 
-    "EX", 
-    "EX+", 
-    "EX Premium", 
-    "GT-Line", 
-    "GT"
-  ],
-  "2023": [
-    "LX", 
-    "EX", 
-    "EX+", 
-    "EX Premium", 
-    "GT-Line", 
-    "GT"
-  ],
-  "2024": [
-    "LX", 
-    "EX", 
-    "EX+", 
-    "EX Premium", 
-    "GT-Line", 
-    "GT"
-  ]
-},
+      "2017": ["LX", "LX+", "EX", "EX Premium", "EX Limited", "SX"],
+      "2018": ["LX", "LX+", "EX", "EX Premium", "EX Limited", "SX"],
+      "2019": ["LX", "EX", "EX+", "EX Premium", "EX Limited"],
+      "2020": ["LX", "EX", "EX+", "EX Premium", "EX Limited", "GT"],
+      "2021": ["LX", "EX", "EX+", "EX Premium", "EX Limited", "GT"],
+      "2022": ["LX", "EX", "EX+", "EX Premium", "GT-Line", "GT"],
+      "2023": ["LX", "EX", "EX+", "EX Premium", "GT-Line", "GT"],
+      "2024": ["LX", "EX", "EX+", "EX Premium", "GT-Line", "GT"]
+    }
+  },
   "HONDA": {
     "Civic": {
-      "2017": [
-        "lx",
-        "Ex",
-        "Sport",
-        "Touring"
-      ],
-      "2018": [
-        "lx",
-        "Ex",
-        "Sport",
-        "Touring"
-      ],
-      "2019": [
-        "lx",
-        "Ex",
-        "Sport",
-        "Touring"
-      ],
-      "2020": [
-        "lx",
-        "Ex",
-        "Sport",
-        "Touring"
-      ],
-      "2021": [
-        "lx",
-        "Ex",
-        "Sport",
-        "Touring"
-      ],
-      "2022": [
-        "lx",
-        "Ex",
-        "Sport",
-        "Touring"
-      ],
-      "2023": [
-        "lx",
-        "Ex",
-        "Sport",
-        "Touring"
-      ],
-      "2024": [
-        "lx",
-        "Ex",
-        "Sport",
-        "Touring"
-      ],
+      "2017": ["lx", "Ex", "Sport", "Touring"],
+      "2018": ["lx", "Ex", "Sport", "Touring"],
+      "2019": ["lx", "Ex", "Sport", "Touring"],
+      "2020": ["lx", "Ex", "Sport", "Touring"],
+      "2021": ["lx", "Ex", "Sport", "Touring"],
+      "2022": ["lx", "Ex", "Sport", "Touring"],
+      "2023": ["lx", "Ex", "Sport", "Touring"],
+      "2024": ["lx", "Ex", "Sport", "Touring"],
       "2025": [],
       "2026": []
     }
   },
   "HYUNDAI": {
     "KONA": {
-      "2024": [
-        "Essential",
-        "Preferred",
-        "N Line"
-      ]
+      "2024": ["Essential", "Preferred", "N Line"]
     }
   }
 }
