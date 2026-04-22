@@ -1,14 +1,36 @@
 {
   "KIA": {
     "Sportage": {
-      "2019": [],
-      "2020": [],
-      "2021": [],
+      "2019": [
+        "LX",
+        "LX S",
+        "LX Nightsky Edition",
+        "EX S",
+        "EX PREMIUM S",
+        "SX"
+      ],
+      "2020": [
+        "LX",
+        "LX S",
+        "LX Nightsky Edition",
+        "EX S",
+        "EX PREMIUM S",
+        "SX"
+      ],
+      "2021": [
+        "LX",
+        "LX S",
+        "LX Nightsky Edition",
+        "EX S",
+        "EX PREMIUM S",
+        "SX"
+      ],
       "2022": [
         "LX",
         "LX Nightsky Edition",
         "EX S",
-        "EX PREMIUM S"
+        "EX PREMIUM S",
+        "SX"
       ],
       "2023": [
         "LX",
