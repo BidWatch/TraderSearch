@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>TraderSearch Lallier</title>
+    <title>AutoAppraiser Pro | Team Cloud</title>
     <style>
         body { font-family: 'Segoe UI', sans-serif; background: #121212; color: #e0e0e0; margin: 0; padding: 20px; }
         header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ed1c24; padding-bottom: 10px; }
@@ -13,18 +13,26 @@
         button.active { background: #ed1c24; font-weight: bold; }
         .trim-btn { background: #007bff; border-color: #0056b3; }
         .add-btn { background: none; border: 1px dashed #666; color: #888; text-align: center; margin-top: 10px; display: none; }
-        .mgmt-toggle { background: #444; padding: 5px 15px; border-radius: 20px; cursor: pointer; font-size: 12px; }
+        .mgmt-toggle, .sort-select { background: #444; color: white; padding: 5px 15px; border-radius: 20px; cursor: pointer; font-size: 12px; border: none; }
         .mgmt-active { background: #ed1c24; }
         #status { font-size: 12px; margin-left: 10px; color: #aaa; }
+        .nav-right { display: flex; gap: 10px; align-items: center; }
     </style>
 </head>
 <body>
 
     <header>
         <div>
-            <h2 style="margin:0">TraderSearch Lallier <span id="status">Syncing...</span></h2>
+            <h2 style="margin:0">AutoAppraiser Pro <span id="status">Syncing...</span></h2>
         </div>
-        <div style="display:flex; gap:10px;">
+        <div class="nav-right">
+            <select id="sortOrder" class="sort-select">
+                <option value="sort=price&desc=0">Price: Low to High</option>
+                <option value="sort=price&desc=1">Price: High to Low</option>
+                <option value="sort=mileage&desc=0">KM: Low to High</option>
+                <option value="sort=mileage&desc=1">KM: High to Low</option>
+            </select>
+
             <button class="mgmt-toggle" onclick="setupToken()">🔑 Set Token</button>
             <div id="mgmtToggle" class="mgmt-toggle" onclick="toggleMgmt()">Edit Mode: OFF</div>
         </div>
@@ -54,9 +62,9 @@
     </div>
 
 <script>
-    // --- 1. CONFIGURATION (CHANGE THIS) ---
-    const GITHUB_USER = 'BidWatch'; 
-    const GITHUB_REPO = 'TraderSearch';
+    // --- CONFIGURATION ---
+    const GITHUB_USER = 'YOUR_GITHUB_USERNAME'; // <--- ENSURE YOUR USERNAME IS HERE
+    const GITHUB_REPO = 'appraiser';
     const GITHUB_FILE = 'database.json';
 
     let carData = {};
@@ -64,7 +72,7 @@
     let selection = { make: '', model: '', year: '' };
     let mgmtMode = false;
 
-    // --- 2. CLOUD SYNC CORE ---
+    // --- CLOUD SYNC CORE ---
     async function loadData() {
         const status = document.getElementById('status');
         try {
@@ -76,44 +84,33 @@
             status.style.color = "#28a745";
             renderMakes();
         } catch (e) {
-            status.innerText = "❌ Sync Error (Check Config)";
+            status.innerText = "❌ Sync Error";
             status.style.color = "#ed1c24";
         }
     }
 
     async function pushData() {
         const token = localStorage.getItem('gh_token');
-        if (!token) return alert("Please click the 🔑 button and paste your GitHub Token first.");
-        
-        document.getElementById('status').innerText = "💾 Saving to Cloud...";
-        
+        if (!token) return alert("Set Token first.");
         const content = btoa(unescape(encodeURIComponent(JSON.stringify(carData, null, 2))));
-        
         const resp = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`, {
             method: 'PUT',
             headers: { 'Authorization': `token ${token}`, 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                message: "Update inventory",
-                content: content,
-                sha: currentSha
-            })
+            body: JSON.stringify({ message: "Update inventory", content: content, sha: currentSha })
         });
-
         if (resp.ok) {
             const result = await resp.json();
             currentSha = result.content.sha;
             document.getElementById('status').innerText = "✅ Saved!";
-        } else {
-            alert("Error saving. Your token might be expired or incorrect.");
         }
     }
 
     function setupToken() {
-        const t = prompt("Paste your GitHub Token here (it will be saved in this browser):");
+        const t = prompt("Paste GitHub Token:");
         if (t) { localStorage.setItem('gh_token', t); location.reload(); }
     }
 
-    // --- 3. UI RENDERERS ---
+    // --- RENDERERS ---
     function renderMakes() {
         const list = document.getElementById('makeList');
         list.innerHTML = '';
@@ -161,35 +158,27 @@
         });
     }
 
-    // --- 4. DATA ADDERS ---
-    function addMake() {
-        const n = prompt("Enter Make:");
-        if (n) { carData[n] = {}; renderMakes(); pushData(); }
-    }
-    function addModel() {
-        if (!selection.make) return;
-        const n = prompt("Enter Model:");
-        if (n) { carData[selection.make][n] = {}; renderModels(); pushData(); }
-    }
-    function addYear() {
-        if (!selection.model) return;
-        const n = prompt("Enter Year:");
-        if (n) { carData[selection.make][selection.model][n] = []; renderYears(); pushData(); }
-    }
-    function addTrim() {
-        if (!selection.year) return;
-        const n = prompt("Enter Trim Name:");
-        if (n) { carData[selection.make][selection.model][selection.year].push(n); renderTrims(); pushData(); }
-    }
-
+    // --- UPDATED SEARCH LOGIC ---
     function launchSearch(trim) {
         const make = selection.make.toLowerCase().replace(/\s+/g, '-');
         const model = selection.model.toLowerCase().replace(/\s+/g, '-');
         const trimPath = "tn_" + trim.toLowerCase().replace(/\s+/g, '-');
         const yearPath = "my_" + selection.year;
-        const url = `https://www.autotrader.ca/cars/${make}/${model}/${trimPath}/${yearPath}/reg_qc/cit_laval?offer=N%2CU&cy=CA&damaged_listing=exclude&desc=0&sort=price&ustate=N%2CU&atype=C`;
+        
+        // Get the value from our new dropdown
+        const sortParams = document.getElementById('sortOrder').value;
+
+        // Construct the URL using your autohebdo/autotrader format
+        const url = `https://www.autohebdo.net/autos/${make}/${model}/${trimPath}/${yearPath}/reg_qc/cit_laval?offer=N%2CU&cy=CA&damaged_listing=exclude&ustate=N%2CU&atype=C&${sortParams}`;
+        
         window.open(url, '_blank');
     }
+
+    // --- DATA ADDERS ---
+    function addMake() { const n = prompt("Make:"); if (n) { carData[n] = {}; renderMakes(); pushData(); } }
+    function addModel() { if (!selection.make) return; const n = prompt("Model:"); if (n) { carData[selection.make][n] = {}; renderModels(); pushData(); } }
+    function addYear() { if (!selection.model) return; const n = prompt("Year:"); if (n) { carData[selection.make][selection.model][n] = []; renderYears(); pushData(); } }
+    function addTrim() { if (!selection.year) return; const n = prompt("Trim:"); if (n) { carData[selection.make][selection.model][selection.year].push(n); renderTrims(); pushData(); } }
 
     function clearCols(lvl) {
         if (lvl <= 1) { document.getElementById('modelList').innerHTML = ''; selection.model = ''; }
