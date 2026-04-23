@@ -859,7 +859,9 @@
   },
   "HYUNDAI": {
     "KONA": {
-      "2022": [],
+      "2022": [
+        "preferred"
+      ],
       "2024": [
         "Essential",
         "Preferred",
