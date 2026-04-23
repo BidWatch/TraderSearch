@@ -858,50 +858,89 @@
     }
   },
   "HYUNDAI": {
-    "Elantra": {
-      "2018": ["L", "GL", "GLS", "Limited", "Sport"],
-      "2019": ["Essential", "Preferred", "Luxury", "Ultimate", "Sport"],
-      "2020": ["Essential", "Preferred", "Luxury", "Ultimate"],
-      "2021": ["Essential", "Preferred", "Ultimate", "N Line"],
-      "2022": ["Essential", "Preferred", "Luxury", "Ultimate Hybrid", "N Line", "N"],
-      "2023": ["Essential", "Preferred", "Luxury", "Ultimate Hybrid", "N Line", "N"],
-      "2024": ["Essential", "Preferred", "Luxury", "Ultimate Hybrid", "N Line", "N"],
-      "2025": ["Essential", "Preferred", "Luxury", "Ultimate Hybrid", "N"],
-      "2026": ["Essential", "Preferred", "Luxury", "Ultimate Hybrid", "N"]
-    },
-    "Tucson": {
-      "2018": ["2.0L FWD", "2.0L AWD", "Premium", "Luxury", "Ultimate"],
-      "2019": ["Essential", "Preferred", "Luxury", "Ultimate"],
-      "2020": ["Essential", "Preferred", "Luxury", "Ultimate", "Urban Edition"],
-      "2021": ["Essential", "Preferred", "Luxury", "Ultimate"],
-      "2022": ["Essential", "Preferred", "Urban", "Luxury Hybrid", "Ultimate Hybrid"],
-      "2023": ["Essential", "Preferred", "Urban", "Luxury Hybrid", "Ultimate Hybrid", "PHEV"],
-      "2024": ["Essential", "Preferred", "Urban", "Luxury Hybrid", "Ultimate Hybrid", "N Line"],
-      "2025": ["Preferred", "Trend", "Luxury Hybrid", "Ultimate Hybrid"],
-      "2026": ["Preferred", "SEL Premium", "Luxury Hybrid", "Ultimate Hybrid"]
-    },
-    "Kona": {
-      "2018": ["Essential", "Preferred", "Luxury", "Ultimate"],
-      "2019": ["Essential", "Preferred", "Luxury", "Ultimate", "Electric"],
-      "2020": ["Essential", "Preferred", "Luxury", "Ultimate", "Electric"],
-      "2021": ["Essential", "Preferred", "Luxury", "Ultimate", "Night Edition"],
-      "2022": ["Essential", "Preferred", "Luxury", "N Line", "Electric"],
-      "2023": ["Essential", "Preferred", "N Line", "Electric"],
-      "2024": ["Essential", "Preferred", "Trend", "N Line", "Electric"],
-      "2025": ["Essential", "Preferred", "N Line", "Electric"],
-      "2026": ["Essential", "Preferred", "N Line", "Electric"]
-    },
-    "Santa Fe": {
-      "2019": ["Essential", "Preferred", "Luxury", "Ultimate"],
-      "2020": ["Essential", "Preferred", "Luxury", "Ultimate"],
-      "2021": ["Essential", "Preferred", "Luxury Hybrid", "Ultimate Calligraphy"],
-      "2022": ["Essential", "Preferred", "Luxury Hybrid", "Ultimate Calligraphy", "PHEV"],
-      "2023": ["Preferred", "Urban", "Luxury Hybrid", "Ultimate Calligraphy"],
-      "2024": ["Preferred Hybrid", "XRT", "Luxury Hybrid", "Ultimate Calligraphy"],
-      "2025": ["Preferred Hybrid", "XRT", "Luxury Hybrid", "Ultimate Calligraphy"],
-      "2026": ["Preferred Hybrid", "XRT", "Luxury Hybrid", "Ultimate Calligraphy"]
-    }
+  "Elantra": {
+    "2018": ["L", "GL", "GLS", "Limited", "Sport"],
+    "2019": ["Essential", "Preferred", "Luxury", "Ultimate", "Sport"],
+    "2020": ["Essential", "Preferred", "Luxury", "Ultimate"],
+    "2021": ["Essential", "Preferred", "Ultimate", "N Line"],
+    "2022": ["Essential", "Preferred", "Luxury", "Ultimate Hybrid", "N Line", "N"],
+    "2023": ["Essential", "Preferred", "Luxury", "Ultimate Hybrid", "N Line", "N"],
+    "2024": ["Essential", "Preferred", "Luxury", "Ultimate Hybrid", "N Line", "N"],
+    "2025": ["Essential", "Preferred", "Luxury", "Ultimate Hybrid", "N"],
+    "2026": ["Essential", "Preferred", "Luxury", "Ultimate Hybrid", "N"]
   },
+  "Accent": {
+    "2018": ["L", "LE", "GL", "GLS"],
+    "2019": ["Essential", "Preferred", "Luxury"],
+    "2020": ["Essential", "Preferred", "Ultimate"],
+    "2021": ["Essential", "Preferred", "Ultimate"],
+    "2022": ["Essential", "Preferred", "Ultimate"]
+  },
+  "Venue": {
+    "2020": ["Essential", "Preferred", "Trend", "Ultimate"],
+    "2021": ["Essential", "Preferred", "Trend", "Ultimate"],
+    "2022": ["Essential", "Preferred", "Ultimate"],
+    "2023": ["Essential", "Preferred", "Ultimate"],
+    "2024": ["Essential", "Preferred", "Ultimate"],
+    "2025": ["Essential", "Preferred", "Ultimate"],
+    "2026": ["Essential", "Preferred", "Ultimate"]
+  },
+  "Santa Cruz": {
+    "2022": ["Preferred", "Preferred Trend", "Ultimate"],
+    "2023": ["Preferred", "Preferred Trend", "Ultimate"],
+    "2024": ["Preferred", "Trend", "Ultimate", "Night"],
+    "2025": ["Preferred", "Trend", "Ultimate", "XRT"],
+    "2026": ["SE", "SEL", "SEL Activity", "XRT", "Limited"]
+  },
+  "Tucson": {
+    "2018": ["2.0L FWD", "2.0L AWD", "Premium", "Luxury", "Ultimate"],
+    "2019": ["Essential", "Preferred", "Luxury", "Ultimate"],
+    "2020": ["Essential", "Preferred", "Luxury", "Ultimate", "Urban Edition"],
+    "2021": ["Essential", "Preferred", "Luxury", "Ultimate"],
+    "2022": ["Essential", "Preferred", "Urban", "Luxury Hybrid", "Ultimate Hybrid"],
+    "2023": ["Essential", "Preferred", "Urban", "Luxury Hybrid", "Ultimate Hybrid", "PHEV"],
+    "2024": ["Essential", "Preferred", "Urban", "Luxury Hybrid", "Ultimate Hybrid", "N Line"],
+    "2025": ["Preferred", "Trend", "Luxury Hybrid", "Ultimate Hybrid"],
+    "2026": ["Preferred", "Trend", "Luxury Hybrid", "Ultimate Hybrid"]
+  },
+  "Kona": {
+    "2018": ["Essential", "Preferred", "Luxury", "Ultimate"],
+    "2019": ["Essential", "Preferred", "Luxury", "Ultimate", "Electric"],
+    "2020": ["Essential", "Preferred", "Luxury", "Ultimate", "Electric"],
+    "2021": ["Essential", "Preferred", "Luxury", "Ultimate", "Night Edition"],
+    "2022": ["Essential", "Preferred", "Luxury", "N Line", "Electric"],
+    "2023": ["Essential", "Preferred", "N Line", "Electric"],
+    "2024": ["Essential", "Preferred", "Trend", "N Line", "Electric"],
+    "2025": ["Essential", "Preferred", "N Line", "Electric"],
+    "2026": ["Essential", "Preferred", "N Line", "Electric"]
+  },
+  "Santa Fe": {
+    "2019": ["Essential", "Preferred", "Luxury", "Ultimate"],
+    "2020": ["Essential", "Preferred", "Luxury", "Ultimate"],
+    "2021": ["Essential", "Preferred", "Luxury Hybrid", "Ultimate Calligraphy"],
+    "2022": ["Essential", "Preferred", "Luxury Hybrid", "Ultimate Calligraphy", "PHEV"],
+    "2023": ["Preferred", "Urban", "Luxury Hybrid", "Ultimate Calligraphy"],
+    "2024": ["Preferred Hybrid", "XRT", "Luxury Hybrid", "Ultimate Calligraphy"],
+    "2025": ["Preferred Hybrid", "XRT", "Luxury Hybrid", "Ultimate Calligraphy"],
+    "2026": ["Preferred Hybrid", "XRT", "Luxury Hybrid", "Ultimate Calligraphy"]
+  },
+  "Palisade": {
+    "2020": ["Essential", "Preferred", "Luxury", "Ultimate"],
+    "2021": ["Essential", "Preferred", "Luxury", "Ultimate Calligraphy"],
+    "2022": ["Essential", "Preferred", "Luxury", "Ultimate Calligraphy"],
+    "2023": ["Preferred", "Urban", "Ultimate Calligraphy"],
+    "2024": ["Preferred", "Urban", "Ultimate Calligraphy"],
+    "2025": ["Preferred", "Ultimate Calligraphy"],
+    "2026": ["Preferred", "XRT Pro", "Ultimate Calligraphy"]
+  },
+  "Ioniq 5": {
+    "2022": ["Essential RWD", "Preferred RWD", "Preferred AWD", "Ultimate AWD"],
+    "2023": ["Preferred RWD", "Preferred AWD", "Ultimate AWD"],
+    "2024": ["Preferred RWD", "Preferred AWD", "Ultimate AWD", "N"],
+    "2025": ["Preferred RWD", "Preferred AWD", "Ultimate AWD", "N"],
+    "2026": ["Preferred RWD", "Preferred AWD", "Ultimate AWD", "N"]
+  }
+},
   "MAZDA": {
   "Mazda3": {
     "2018": ["GX", "GS", "GT"],
