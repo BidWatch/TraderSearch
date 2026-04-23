@@ -1651,6 +1651,8 @@
     }
   },
   "SUBARU": {
-    "FORESTER": {}
+    "FORESTER": {
+      "2024": []
+    }
   }
 }
