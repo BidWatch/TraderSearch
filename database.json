@@ -1968,5 +1968,77 @@
       ]
     }
   },
-  "CHEVROLET": {}
+  "CHEVROLET": {
+    "Equinox": {
+      "2019": ["LS", "LT", "Premier"],
+      "2020": ["LS", "LT", "Premier"],
+      "2021": ["LS", "LT", "Premier"],
+      "2022": ["LS", "LT", "RS", "Premier"],
+      "2023": ["LS", "LT", "RS", "Premier"],
+      "2024": ["LS", "LT", "RS", "Premier"],
+      "2025": ["LT", "RS", "Activ"]
+    },
+    "Silverado 1500": {
+      "2019": ["WT", "Custom", "Custom Trail Boss", "LT", "RST", "LT Trail Boss", "LTZ", "High Country"],
+      "2020": ["WT", "Custom", "Custom Trail Boss", "LT", "RST", "LT Trail Boss", "LTZ", "High Country"],
+      "2021": ["WT", "Custom", "Custom Trail Boss", "LT", "RST", "LT Trail Boss", "LTZ", "High Country"],
+      "2022": ["WT", "Custom", "Custom Trail Boss", "LT", "RST", "LT Trail Boss", "LTZ", "High Country", "ZR2"],
+      "2023": ["WT", "Custom", "Custom Trail Boss", "LT", "RST", "LT Trail Boss", "LTZ", "High Country", "ZR2"],
+      "2024": ["WT", "Custom", "Custom Trail Boss", "LT", "RST", "LT Trail Boss", "LTZ", "High Country", "ZR2"],
+      "2025": ["WT", "Custom", "Custom Trail Boss", "LT", "RST", "LT Trail Boss", "LTZ", "High Country", "ZR2"]
+    },
+    "Blazer": {
+      "2019": ["LT", "True North", "RS", "Premier"],
+      "2020": ["LT", "True North", "RS", "Premier"],
+      "2021": ["LT", "True North", "RS", "Premier"],
+      "2022": ["LT", "True North", "RS", "Premier"],
+      "2023": ["LT", "True North", "RS", "Premier"],
+      "2024": ["LT", "True North", "RS", "Premier"],
+      "2025": ["LT", "True North", "RS", "Premier"]
+    },
+    "Trailblazer": {
+      "2021": ["LS", "LT", "Activ", "RS"],
+      "2022": ["LS", "LT", "Activ", "RS"],
+      "2023": ["LS", "LT", "Activ", "RS"],
+      "2024": ["LS", "LT", "Activ", "RS"],
+      "2025": ["LS", "LT", "Activ", "RS"]
+    },
+    "Trax": {
+      "2019": ["LS", "LT", "Premier"],
+      "2020": ["LS", "LT", "Premier"],
+      "2021": ["LS", "LT"],
+      "2022": ["LS", "LT"],
+      "2024": ["LS", "1RS", "LT", "2RS", "Activ"],
+      "2025": ["LS", "1RS", "LT", "2RS", "Activ"]
+    },
+    "Bolt EV": {
+      "2019": ["LT", "Premier"],
+      "2020": ["LT", "Premier"],
+      "2021": ["LT", "Premier"],
+      "2022": ["LT", "Premier"],
+      "2023": ["LT", "Premier"]
+    },
+    "Bolt EUV": {
+      "2022": ["LT", "Premier"],
+      "2023": ["LT", "Premier"]
+    },
+    "Traverse": {
+      "2019": ["LS", "LT", "True North", "RS", "Premier", "High Country"],
+      "2020": ["LS", "LT", "True North", "RS", "Premier", "High Country"],
+      "2021": ["LS", "LT", "True North", "RS", "Premier", "High Country"],
+      "2022": ["LS", "LT", "True North", "RS", "Premier", "High Country"],
+      "2023": ["LS", "LT", "True North", "RS", "Premier", "High Country"],
+      "2024": ["LS", "LT", "Z71", "RS"],
+      "2025": ["LT", "Z71", "RS", "High Country"]
+    },
+    "Tahoe": {
+      "2019": ["LS", "LT", "Premier"],
+      "2020": ["LS", "LT", "Premier"],
+      "2021": ["LS", "LT", "RST", "Z71", "Premier", "High Country"],
+      "2022": ["LS", "LT", "RST", "Z71", "Premier", "High Country"],
+      "2023": ["LS", "LT", "RST", "Z71", "Premier", "High Country"],
+      "2024": ["LS", "LT", "RST", "Z71", "Premier", "High Country"],
+      "2025": ["LS", "LT", "Z71", "RST", "Premier", "High Country"]
+    }
+  }
 }
