@@ -1651,28 +1651,64 @@
     }
   },
   "SUBARU": {
-    "FORESTER": {
-      "2017": [],
-      "2018": [],
-      "2019": [],
-      "2020": [],
-      "2021": [],
-      "2022": [
-        "PREMIER",
-        "WILDERNESS"
-      ],
-      "2023": [
-        "PREMIER",
-        "WILDERNESS",
-        "TOURING"
-      ],
-      "2024": [
-        "PREMIER",
-        "TOURING",
-        "WILDERNESS"
-      ],
-      "homo gab": []
+    "Crosstrek": {
+      "2018": ["Convenience", "Touring", "Sport", "Limited"],
+      "2019": ["Convenience", "Touring", "Sport", "Limited"],
+      "2020": ["Convenience", "Touring", "Sport", "Limited", "Outdoor"],
+      "2021": ["Convenience", "Touring", "Outdoor", "Sport", "Limited"],
+      "2022": ["Convenience", "Touring", "Outdoor", "Sport", "Limited"],
+      "2023": ["Convenience", "Touring", "Outdoor", "Sport", "Limited"],
+      "2024": ["Convenience", "Touring", "Onyx", "Limited", "Wilderness"]
     },
+    "Forester": {
+      "2018": ["2.5i", "2.5i Convenience", "2.5i Touring", "2.5i Limited", "2.0XT Touring", "2.0XT Limited"],
+      "2019": ["2.5i", "Convenience", "Touring", "Sport", "Limited", "Premier"],
+      "2020": ["Base", "Convenience", "Touring", "Sport", "Limited", "Premier"],
+      "2021": ["Base", "Convenience", "Touring", "Sport", "Limited", "Premier"],
+      "2022": ["Base", "Convenience", "Touring", "Sport", "Wilderness", "Limited", "Premier"],
+      "2023": ["Base", "Convenience", "Touring", "Sport", "Wilderness", "Limited", "Premier"],
+      "2024": ["Base", "Convenience", "Touring", "Sport", "Wilderness", "Limited", "Premier"]
+    },
+    "Outback": {
+      "2018": ["2.5i", "2.5i Touring", "2.5i Limited", "2.5i Premier", "3.6R Touring", "3.6R Limited", "3.6R Premier"],
+      "2019": ["2.5i", "2.5i Touring", "2.5i Limited", "2.5i Premier", "3.6R Touring", "3.6R Limited", "3.6R Premier"],
+      "2020": ["Convenience", "Touring", "Limited", "Premier", "Outdoor XT", "Limited XT", "Premier XT"],
+      "2021": ["Convenience", "Touring", "Limited", "Premier", "Outdoor XT", "Limited XT", "Premier XT"],
+      "2022": ["Convenience", "Touring", "Limited", "Premier", "Wilderness", "Outdoor XT", "Limited XT", "Premier XT"],
+      "2023": ["Convenience", "Touring", "Onyx", "Limited", "Wilderness", "Limited XT", "Premier XT"],
+      "2024": ["Convenience", "Touring", "Onyx", "Limited", "Wilderness", "Limited XT", "Premier XT"]
+    },
+    "Impreza": {
+      "2018": ["Convenience", "Touring", "Sport", "Sport-tech"],
+      "2019": ["Convenience", "Touring", "Sport", "Sport-tech"],
+      "2020": ["Convenience", "Touring", "Sport", "Sport-tech"],
+      "2021": ["Convenience", "Touring", "Sport", "Sport-tech"],
+      "2022": ["Convenience", "Touring", "Sport", "Sport-tech"],
+      "2023": ["Convenience", "Touring", "Sport", "Sport-tech"],
+      "2024": ["Convenience", "Touring", "RS", "Sport-tech"]
+    },
+    "Ascent": {
+      "2019": ["Convenience", "Touring", "Limited", "Premier"],
+      "2020": ["Convenience", "Touring", "Limited", "Premier"],
+      "2021": ["Convenience", "Touring", "Limited", "Premier"],
+      "2022": ["Convenience", "Touring", "Onyx", "Limited", "Premier"],
+      "2023": ["Convenience", "Touring", "Onyx", "Limited", "Premier"],
+      "2024": ["Convenience", "Touring", "Onyx", "Limited", "Premier"]
+    },
+    "WRX": {
+      "2018": ["Base", "Sport", "Sport-tech", "RS", "Sport-tech RS"],
+      "2019": ["Base", "Sport", "Sport-tech", "Sport-tech RS", "Series.Gray"],
+      "2020": ["Base", "Sport", "Sport-tech", "Sport-tech RS"],
+      "2021": ["Base", "Sport", "Sport-tech", "Sport-tech RS"],
+      "2022": ["Base", "Sport", "Sport-tech", "Sport-tech WRB"],
+      "2023": ["Base", "Sport", "Sport-tech"],
+      "2024": ["Base", "Sport", "Sport-tech", "RS", "GT"]
+    },
+    "Solterra": {
+      "2023": ["AWD", "Luxury Package", "Technology Package"],
+      "2024": ["AWD", "Luxury Package", "Technology Package"]
+    }
+  },
     "IMPREZA": {
       "2018": [],
       "2019": [],
